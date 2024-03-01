@@ -9,18 +9,15 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
     PIP_NO_CACHE_DIR=1
 
 ### Final stage
-FROM python:3.11-slim as final
+FROM python:3.9-slim as final
 
 COPY requirements.txt .
 
 RUN set -ex \
-    # Upgrade the package index and install security upgrades
     && apt-get update \
     && apt-get upgrade -y \
-    # Install dependencies
-    && apt-get install procps -y \
+    && apt-get install -y build-essential libblas-dev liblapack-dev gfortran procps \
     && pip install -r requirements.txt \
-    # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*

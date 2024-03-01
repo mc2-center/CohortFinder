@@ -18,6 +18,7 @@ RUN set -ex \
     && apt-get upgrade -y \
     && apt-get install -y build-essential libblas-dev liblapack-dev gfortran procps \
     && pip install -r requirements.txt \
+    && pip install . \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*

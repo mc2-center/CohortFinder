@@ -19,13 +19,8 @@ RUN set -ex \
     && apt-get upgrade -y \
     # Install dependencies
     && apt-get install procps -y \
-    && apt-get install wget -y \
-    && apt-get install unzip -y \
     && pip install -r requirements.txt \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
-RUN wget http://downloads.openmicroscopy.org/latest/bio-formats7.0/artifacts/bftools.zip \
-	&& unzip bftools.zip -x '*.bat' -d /usr/local/bin/
